@@ -1,14 +1,20 @@
 import React from "react";
-import Link from "./Link";
+import './style.css';
 
 const PagesList = props =>{
 
-    console.log(props);
+    const onClick = (event, index) => {
+        if (event.metaKey || event.ctrlKey) {
+          return;
+        }
+        event.preventDefault();
+        props.onClicked(index);
+      };
 
     const Pages = props.pages.map((page,index) => {
         return (
-            <div key = {index} className = "side-header" onClick = { () => {props.onClicked(index)}} >
-                <Link href = {`/${page.title}`} className = "item" >{page.title}</Link>
+            <div key = {index} className = "side-header">
+                <a href = {`/${page.title}`} className = "link" onClick={(event) => {onClick(event, index)}}>{page.title}</a>
             </div>
         )
     });

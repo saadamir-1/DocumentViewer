@@ -43,39 +43,38 @@ class App extends React.Component {
     this.setState({pageNumber: number});    
   }
 
+  renderBodyText(){
+    let pn;
+    if (this.state.pageNumber !== null) {
+      pn = this.state.pageNumber
+      return (
+        <div className='body-text'>
+          <div className='content'>
+            <h1 className='h1'>{this.state.pages[pn].title}</h1>
+          </div>
+          <div className='content'>
+            <ReactMarkdown children={this.state.pages[pn].bodyText} remarkPlugins={[remarkGfm]} />
+          </div>
+        </div>
+      );
+    }
+  }
+
   renderContent(){
     if (this.state.errorMessage) {
       return <div className='error-style'><p>{this.state.errorMessage}</p></div>;
     }else{
-      let pn;
-      if (this.state.pageNumber !== null) {
-        pn = this.state.pageNumber
-        console.log(pn);
-        return(
-          <div className='grid-container'>
-            <div className='content'>
-                <PagesList pages = {this.state.pages} onClicked = {this.onTitleClicked}></PagesList>
-            </div>
-            <div className='body-text'>
-              <div className='content'>
-                <h1 className='h1'>{this.state.pages[pn].title}</h1>
-              </div>
-              <div className='content'>
-                <ReactMarkdown children={this.state.pages[pn].bodyText} remarkPlugins={[remarkGfm]} />
-              </div>
-            </div>
-        </div>
-        )
-      }else{
-        return (
-          <div className='grid-container'>
-            <div className='content'>
+      return(
+        <div className='grid-container'>
+          <div className='content'>
+              <h3>Menu</h3>
               <PagesList pages = {this.state.pages} onClicked = {this.onTitleClicked}></PagesList>
-            </div>
-            <div></div>
           </div>
-        );
-      }
+          <div>
+            {this.renderBodyText()}
+          </div>
+      </div>
+      );
     }
   }
 
