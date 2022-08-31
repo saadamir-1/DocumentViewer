@@ -1,25 +1,29 @@
 import React from "react";
-import './style.css';
+import "./style.css";
 
-const PagesList = props =>{
+const PagesList = (props) => {
+  const onClick = (event, index) => {
+    event.preventDefault();
+    props.onClicked(index);
+  };
 
-    const onClick = (event, index) => {
-        if (event.metaKey || event.ctrlKey) {
-          return;
-        }
-        event.preventDefault();
-        props.onClicked(index);
-      };
-
-    const Pages = props.pages.map((page,index) => {
-        return (
-            <div key = {index} className = "side-header">
-                <a href = {`/${page.title}`} className = "link" onClick={(event) => {onClick(event, index)}}>{page.title}</a>
-            </div>
-        )
-    });
-
-    return Pages    
-}
+  return (
+    <>
+      {props.pages.map((page, index) => (
+        <div key={page.title} className="side-header">
+          <a
+            href={`/${page.title}`}
+            onClick={(event) => {
+              onClick(event, index);
+            }}
+            className={props.pageClicked === index ? "selected-link" : "link"}
+          >
+            {page.title}
+          </a>
+        </div>
+      ))}
+    </>
+  );
+};
 
 export default PagesList;
