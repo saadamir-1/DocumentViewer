@@ -13,13 +13,13 @@ const SearchBar = (props) => {
       <form onSubmit={onFormSubmit} className="ui form">
         <div className="field">
           <label>Enter URL for the document</label>
-          <div>
+          <div className="search">
             <input
               type="text"
               value={term}
               onChange={(e) => setTerm(e.target.value)}
             />
-            <button>Touch me</button>
+            <button>Submit</button>
           </div>
         </div>
       </form>

@@ -39,6 +39,19 @@ h3:first-child {
   margin-top: 10px;
 }
 
+.search {
+  display: grid;
+  grid-template-columns: 90% auto;
+  gap: 10px;
+}
+
+button {
+  color: white;
+  background-color: #4183c4;
+  border-color: #4183c4;
+  border-radius: 3px;
+}
+
 @media only screen and (max-width: 600px) {
   .ui.container {
     width: 95vw !important;
